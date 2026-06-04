@@ -17,6 +17,14 @@ class PagerDutyCalendar < ApplicationRecord
             presence: true,
             inclusion: { in: %w[in_hours out_of_hours in_and_out_of_hours] }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id team_id name url clock_type created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[team]
+  end
+
   validate :url_is_http
 
   def url_is_http

@@ -23,5 +23,6 @@ Rails.application.config.assets.paths << Rails.root.join(
   "node_modules/govuk-frontend/govuk",
 )
 
+# Sprockets 4 does not support Regexp in precompile; use explicit globs instead.
 # Rails needs to know about the file extensions for our fonts
-Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|woff2|ttf|ico)\z/
+Rails.application.config.assets.precompile += %w[*.svg *.eot *.woff *.woff2 *.ttf *.ico]

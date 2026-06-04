@@ -7,6 +7,14 @@ class ManualCalendarEvent < ApplicationRecord
 
   serialize :emails, Array
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id manual_calendar_id start_date end_date created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[manual_calendar]
+  end
+
 private
 
   def end_date_after_start_date?

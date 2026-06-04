@@ -18,7 +18,7 @@ class RotasAuthorisationTest < ActiveSupport::TestCase
   end
 
   test "is_admin?" do
-    assert Rotas::Authorisation.is_admin?("ALEX.MONK@digital.cabinet-office.gov.uk")
+    assert Rotas::Authorisation.is_admin?("disable@auth.user")
     assert_not Rotas::Authorisation.is_admin?("bad.person@suspicious.com")
   end
 end

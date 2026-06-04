@@ -1,5 +1,6 @@
 require_relative "boot"
 
+require "logger"
 require "rails/all"
 require "prometheus/middleware/collector"
 require "prometheus/middleware/exporter"
