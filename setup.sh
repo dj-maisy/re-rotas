@@ -9,7 +9,5 @@ command -v npm > /dev/null || (echo "npm not installed" && exit 1)
 bundle check || bundle install
 npm install
 
-echo "Running any migrations..."
-bin/rake db:migrate
-echo "Starting server..."
-DISABLE_AUTH=yes bin/rails s
+bin/rake db:create db:schema:load
+echo "Now run ./startup.sh"

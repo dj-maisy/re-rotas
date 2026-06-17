@@ -28,13 +28,22 @@ class UrlCache
   end
 end
 
-module Rotas
-  URL_CACHE = UrlCache.new
-end
+$persistent_url_cache ||= UrlCache.new
 
-if Rails.const_defined? "Server"
-  PagerDutyCalendar.all.each do |calendar|
-    Rails.logger.info "Starting url fetcher job for #{calendar.url}"
-    Rotas::URL_CACHE.watch(calendar.url)
+Rails.application.config.to_prepare do
+  module Rotas
+    URL_CACHE = $persistent_url_cache
+  end
+
+  if Rails.const_defined?("Server") && !defined?($watchers_started)
+
+    if ActiveRecord::Base.connection.schema_cache.data_source_exists?("pager_duty_calendars")
+      PagerDutyCalendar.all.each do |calendar|
+        Rails.logger.info "Starting url fetcher job for #{calendar.url}"
+        Rotas::URL_CACHE.watch(calendar.url)
+      end
+    end
+
+    $watchers_started = true
   end
 end
