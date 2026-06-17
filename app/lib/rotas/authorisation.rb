@@ -1,9 +1,9 @@
 module Rotas::Authorisation
   AUTHORISED_DOMAINS = [
-      "digital.cabinet-office.gov.uk",
-      "dsit.gov.uk",
-      "auth.user"
-    ].freeze
+    "digital.cabinet-office.gov.uk",
+    "dsit.gov.uk",
+    "auth.user",
+  ].freeze
 
   def self.email_authorised?(email)
     email.end_with?(*AUTHORISED_DOMAINS)

@@ -28,15 +28,16 @@ class UrlCache
   end
 end
 
-$persistent_url_cache ||= UrlCache.new
+module Rotas; end unless defined?(Rotas)
+
+Rails.application.config.x.rotas.url_cache ||= UrlCache.new
 
 Rails.application.config.to_prepare do
-  module Rotas
-    URL_CACHE = $persistent_url_cache
+  unless Rotas.const_defined?(:URL_CACHE)
+    Rotas.const_set(:URL_CACHE, Rails.application.config.x.rotas.url_cache)
   end
 
-  if Rails.const_defined?("Server") && !defined?($watchers_started)
-
+  if Rails.const_defined?("Server") && !Rails.application.config.x.rotas.watchers_started
     if ActiveRecord::Base.connection.schema_cache.data_source_exists?("pager_duty_calendars")
       PagerDutyCalendar.all.each do |calendar|
         Rails.logger.info "Starting url fetcher job for #{calendar.url}"
@@ -44,6 +45,6 @@ Rails.application.config.to_prepare do
       end
     end
 
-    $watchers_started = true
+    Rails.application.config.x.rotas.watchers_started = true
   end
 end

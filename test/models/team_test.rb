@@ -9,7 +9,7 @@ class TeamTest < ActiveSupport::TestCase
   test "team has members" do
     team = Team.new
 
-    class CalendarMock
+    mock_calendar_class = Class.new do
       include Rotas::Calendar
 
       def initialize(name)
@@ -26,8 +26,8 @@ class TeamTest < ActiveSupport::TestCase
 
     team.stub(
       :calendars, [
-        CalendarMock.new("cal1"),
-        CalendarMock.new("cal2"),
+        mock_calendar_class.new("cal1"),
+        mock_calendar_class.new("cal2"),
       ]
     ) do
       assert_equal team.members, ["current@cal1", "current@cal2"]

@@ -3,7 +3,7 @@ require "minitest/mock"
 
 class RotasCalendarTest < ActiveSupport::TestCase
   test "calendar shows current team members only" do
-    class Calendar
+    mock_calendar_class = Class.new do
       include Rotas::Calendar
 
       def person_day_events
@@ -14,11 +14,11 @@ class RotasCalendarTest < ActiveSupport::TestCase
       end
     end
 
-    calendar = Calendar.new
+    calendar = mock_calendar_class.new
 
     members = calendar.members
 
-    assert_equal members.length, 1
-    assert_equal members.first, "current"
+    assert_equal 1, members.length
+    assert_equal "current", members.first
   end
 end

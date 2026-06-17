@@ -6,7 +6,7 @@ module Rotas::PagerDutyApi
       .headers(default_headers)
       .get(users_url, params: { query: email })
 
-    user = JSON.parse(user_response).dig("users").first
+    user = JSON.parse(user_response)["users"].first
 
     return nil if user.nil?
 
@@ -16,7 +16,7 @@ module Rotas::PagerDutyApi
       .headers(default_headers)
       .get(contact_methods_url)
 
-    JSON.parse(contact_methods_response).dig("contact_methods")
+    JSON.parse(contact_methods_response)["contact_methods"]
   end
 
   def self.api_url

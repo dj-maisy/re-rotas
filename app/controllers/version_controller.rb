@@ -5,6 +5,6 @@ class VersionController < ApplicationController
   skip_before_action :maybe_expire_session, only: %i[version]
 
   def version
-    render "version.txt"
+    render :version, formats: :txt
   end
 end

@@ -9,11 +9,11 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id name description slug org_unit_id created_at updated_at]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[pagerduty_calendars manual_calendars services org_unit]
   end
 

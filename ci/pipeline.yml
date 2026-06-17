@@ -4,7 +4,7 @@ meta:
     type: docker-image
     source:
       repository: ruby
-      tag: 2.7.1
+      tag: 3.3.6
 
 resources:
   - name: re-rotas-src

@@ -12,11 +12,11 @@ class ManualCalendar < ApplicationRecord
             presence: true,
             inclusion: { in: %w[in_hours out_of_hours in_and_out_of_hours] }
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[id name team_id clock_type created_at updated_at]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[manual_calendar_events team]
   end
 

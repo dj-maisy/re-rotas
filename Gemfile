@@ -53,7 +53,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bigdecimal"
 gem "drb"
 gem "logger"
-gem "minitest", "~> 5.0"  # minitest 6.x restructured and removed minitest/mock
+gem "minitest", "~> 5.0" # minitest 6.x restructured and removed minitest/mock
 gem "mutex_m"
 gem "ostruct"
 
