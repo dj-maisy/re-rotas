@@ -23,7 +23,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :terser
   # https://github.com/alphagov/govuk-frontend/issues/1350
   config.assets.css_compressor = nil
   # config.assets.css_compressor = :sass

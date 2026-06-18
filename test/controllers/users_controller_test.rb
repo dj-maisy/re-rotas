@@ -50,8 +50,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
       assert_equal audit_event.email, test_session_email
 
-      assert_equal audit_event.event[:message],
-                   "Viewed the contact details of #{email} from PagerDuty"
+      assert_equal "Viewed the contact details of #{email} from PagerDuty", audit_event.event["message"]
 
       assert_select "th", /Email/
       assert_select "td", /email-address/
@@ -91,8 +90,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
       assert_equal audit_event.email, test_session_email
 
-      assert_equal audit_event.event[:message],
-                   "Viewed the contact details of #{email} from PagerDuty"
+      assert_equal "Viewed the contact details of #{email} from PagerDuty", audit_event.event["message"]
 
       assert_select "p", /There are no contact details in PagerDuty/
     end

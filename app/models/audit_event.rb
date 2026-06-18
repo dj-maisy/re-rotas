@@ -7,8 +7,6 @@ class AuditEvent < ApplicationRecord
     end
   end
 
-  serialize :event, Hash
-
   def self.ransackable_attributes(_auth_object = nil)
     %w[id email event created_at updated_at]
   end

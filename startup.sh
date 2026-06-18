@@ -11,5 +11,5 @@ npm install
 
 echo "Running any migrations..."
 bin/rake db:migrate
-echo "Starting server..."
-DISABLE_AUTH=yes bin/rails s
+echo "Starting dev server..."
+DISABLE_AUTH=yes bin/dev

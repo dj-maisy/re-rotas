@@ -1,14 +1,14 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.3"
+ruby "~> 3.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1"
+gem "rails", "~> 7.2"
 # Use Puma as the app server
 gem "puma", "~> 6.0"
 # Use SCSS for stylesheets (sass-rails 6 uses sassc, compatible with Ruby 3.x)
-gem "sass-rails", "~> 6.0"
+gem "sassc-rails"
 # Terser replaces the deprecated uglifier for JavaScript compression
 gem "terser"
 
@@ -25,7 +25,7 @@ group :development, :test do
   gem "byebug", platforms: %i[mri windows]
   gem "pry"
   # Use sqlite3 as the database for Active Record
-  gem "sqlite3", "~> 1.7"
+  gem "sqlite3", "~> 2.0"
 end
 
 group :development do
@@ -38,7 +38,7 @@ group :test do
   gem "capybara", ">= 2.15"
   gem "rubocop-govuk"
   # webdrivers removed: selenium-webdriver 4+ manages ChromeDriver automatically
-  gem "selenium-webdriver", "~> 4.0"
+  gem "selenium-webdriver", "~> 4.10"
 end
 
 group :production do
@@ -57,10 +57,14 @@ gem "minitest", "~> 5.0" # minitest 6.x restructured and removed minitest/mock
 gem "mutex_m"
 gem "ostruct"
 
-gem "activeadmin"
+gem "activeadmin", ">= 4.0.0.beta22"
+gem "importmap-rails"
+gem "cssbundling-rails"
 gem "cf-app-utils"
 gem "friendly_id"
 gem "http"
 gem "icalendar"
 gem "redcarpet"
 gem "ruby-graphviz"
+
+gem "jsbundling-rails", "~> 1.3"

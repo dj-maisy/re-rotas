@@ -2,6 +2,18 @@
   "name": "gds-rotas",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^3.0.0"
+    "@activeadmin/activeadmin": "^4.0.0-beta22",
+    "@rails/activestorage": "^8.1.300",
+    "govuk-frontend": "^3.0.0",
+    "turbolinks": "^5.2.0"
+  },
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "esbuild": "^0.28.1",
+    "tailwindcss": "^4.3.1"
   }
 }

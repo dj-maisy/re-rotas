@@ -5,7 +5,7 @@ class ManualCalendarEvent < ApplicationRecord
   validates :end_date,   presence: true
   validate :end_date_after_start_date?
 
-  serialize :emails, Array
+  serialize :emails, coder: JSON, type: Array
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id manual_calendar_id start_date end_date created_at updated_at]

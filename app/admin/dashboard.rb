@@ -2,8 +2,8 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    columns do
-      column do
+    div class: "grid grid-cols-1 md:grid-cols-2 gap-4" do
+      div do
         panel "Org Units" do
           para [
             link_to("Org units", admin_org_units_path),
@@ -49,7 +49,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
+      div do
         panel "Audit events" do
           para [
             link_to("Audit events", admin_audit_events_path),
