@@ -10,66 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_17_164000) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_18_130242) do
   create_table "annual_leave_events", force: :cascade do |t|
-    t.string "email"
-    t.date "start_date"
-    t.date "end_date"
     t.datetime "created_at", precision: nil, null: false
+    t.string "email"
+    t.date "end_date"
+    t.date "start_date"
     t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "audit_events", force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
     t.string "email"
     t.json "event"
-    t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "manual_calendar_events", force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
+    t.text "emails"
+    t.date "end_date"
     t.string "manual_calendar_id"
     t.date "start_date"
-    t.date "end_date"
-    t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.text "emails"
   end
 
   create_table "manual_calendars", id: false, force: :cascade do |t|
+    t.string "clock_type"
+    t.datetime "created_at", precision: nil, null: false
     t.string "id"
     t.string "name"
     t.bigint "team_id"
-    t.string "clock_type"
-    t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["team_id"], name: "index_manual_calendars_on_team_id"
   end
 
   create_table "org_units", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
     t.string "slug"
+    t.datetime "updated_at", null: false
   end
 
   create_table "pager_duty_calendars", id: false, force: :cascade do |t|
-    t.string "id"
-    t.bigint "team_id"
-    t.string "name"
-    t.string "url"
     t.string "clock_type"
     t.datetime "created_at", precision: nil, null: false
+    t.string "id"
+    t.string "name"
+    t.bigint "team_id"
     t.datetime "updated_at", precision: nil, null: false
+    t.string "url"
     t.index ["team_id"], name: "index_pager_duty_calendars_on_team_id"
   end
 
   create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "description"
     t.text "documentation"
+    t.string "name"
     t.string "slug"
+    t.datetime "updated_at", null: false
   end
 
   create_table "services_teams", id: false, force: :cascade do |t|
@@ -82,17 +82,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_17_164000) do
   create_table "spatial_ref_sys", primary_key: "srid", force: :cascade do |t|
     t.string "auth_name", limit: 256
     t.integer "auth_srid"
-    t.string "srtext", limit: 2048
     t.string "proj4text", limit: 2048
+    t.string "srtext", limit: 2048
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
+  create_table "teams", id: :integer, default: nil, force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
     t.string "description", default: ""
-    t.string "slug"
+    t.string "name"
     t.integer "org_unit_id"
+    t.string "slug"
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["org_unit_id"], name: "index_teams_on_org_unit_id"
   end
 

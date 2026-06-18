@@ -13,7 +13,7 @@
 //= require_tree .
 //= require_self
 
-@import "govuk-frontend/govuk/all";
+@use "govuk-frontend/dist/govuk" as *;
 
 .govuk-table.govuk-table--small {
   font-size: 12px;

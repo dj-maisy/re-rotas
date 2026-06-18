@@ -1,3 +1,4 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server -p 3000
+web: bin/rails server
+css: bin/rails dartsass:watch
+admin_css: npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin_source.css -o ./app/assets/builds/active_admin.css --watch
 js: npm run build -- --watch
-css: npm run build:css -- --watch

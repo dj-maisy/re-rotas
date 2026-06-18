@@ -1,10 +1,11 @@
 {
   "name": "gds-rotas",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@activeadmin/activeadmin": "^4.0.0-beta22",
     "@rails/activestorage": "^8.1.300",
-    "govuk-frontend": "^3.0.0",
+    "govuk-frontend": "^6.2.0",
     "turbolinks": "^5.2.0"
   },
   "scripts": {

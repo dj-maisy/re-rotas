@@ -1,14 +1,13 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.4"
+ruby "~> 4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.2"
+gem "rails", "~> 8.1"
 # Use Puma as the app server
-gem "puma", "~> 6.0"
-# Use SCSS for stylesheets (sass-rails 6 uses sassc, compatible with Ruby 3.x)
-gem "sassc-rails"
+gem "puma", "~> 7.2"
+gem "dartsass-rails"
 # Terser replaces the deprecated uglifier for JavaScript compression
 gem "terser"
 
@@ -17,8 +16,7 @@ gem "turbolinks", "~> 5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.10"
 
-# for SRI
-gem "sprockets-rails"
+gem "propshaft"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,17 +47,16 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[windows jruby]
 
-# Ruby 3.3+ extracted these from stdlib into explicit gems
 gem "bigdecimal"
 gem "drb"
 gem "logger"
-gem "minitest", "~> 5.0" # minitest 6.x restructured and removed minitest/mock
+gem "minitest", "~> 6.0"
+gem "minitest-mock", "~> 5.27"
 gem "mutex_m"
 gem "ostruct"
 
 gem "activeadmin", ">= 4.0.0.beta22"
 gem "importmap-rails"
-gem "cssbundling-rails"
 gem "cf-app-utils"
 gem "friendly_id"
 gem "http"
@@ -68,3 +65,5 @@ gem "redcarpet"
 gem "ruby-graphviz"
 
 gem "jsbundling-rails", "~> 1.3"
+
+gem "benchmark", "~> 0.5.0"

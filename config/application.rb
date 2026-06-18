@@ -18,9 +18,9 @@ module GdsRotas
 
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
-    # Add recommended security headers and apply a basic lenient Content Security Policy
+    # Add recommended security headers
     config.action_dispatch.default_headers = {
       "X-Frame-Options" => "DENY",
       "X-Content-Type-Options" => "nosniff",
@@ -33,11 +33,12 @@ module GdsRotas
       http_only: true,
       same_site: :lax
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-    #
+    config.assets.paths << Rails.root.join("node_modules/flowbite/lib/cjs")
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks])
+
     config.eager_load_paths << config.root.join("lib")
 
     config.active_job.queue_adapter = :async
@@ -45,5 +46,13 @@ module GdsRotas
     config.middleware.use Prometheus::Middleware::Collector
     config.middleware.use Prometheus::Middleware::Exporter
     Prometheus::Client.config.data_store = Prometheus::Client::DataStores::DirectFileStore.new(dir: "tmp/metrics")
+
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
   end
 end

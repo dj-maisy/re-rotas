@@ -1,39 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html class="govuk-template" lang="en">
   <head>
     <title>GDS Rotas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0c0c">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload', integrity: true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', integrity: true %>
-
-    <meta name="theme-color" content="#0b0c0c">
-
-    <link rel="shortcut icon"
-          href="<%= image_path('images/favicon') %>"
-          type="image/x-icon"/>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload', integrity: true %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module', defer: true %>
   </head>
 
-  <body class="govuk-template__body app-body-class">
+  <body class="govuk-template__body">
+    <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
     <%= render partial: 'layouts/header' %>
 
     <div class="govuk-width-container">
       <%= render partial: 'layouts/phase' %>
 
-      <% if flash[:alert] %>
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-warning-text__assistive">Warning</span>
-            <%= flash[:alert] %>
-          </strong>
+      <% if flash[:notice].present? %>
+        <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="notice-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="notice-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading"><%= flash[:notice] %></p>
+          </div>
         </div>
       <% end %>
 
-      <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
+      <% if flash[:alert].present? %>
+        <div class="govuk-notification-banner" role="region" aria-labelledby="alert-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="alert-banner-title">Important</h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading"><%= flash[:alert] %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <main class="govuk-main-wrapper" id="main-content" role="main">
         <%= yield %>
       </main>
     </div>

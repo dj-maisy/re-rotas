@@ -6,4 +6,10 @@ import * as ActiveStorage from "@rails/activestorage";
 ActiveStorage.start();
 
 import Turbolinks from "turbolinks";
+import * as GOVUKFrontend from "govuk-frontend";
+
 Turbolinks.start();
+
+document.addEventListener("turbolinks:load", () => {
+  GOVUKFrontend.initAll();
+});
