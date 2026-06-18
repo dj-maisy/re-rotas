@@ -1,0 +1,17 @@
+{{- if .Values.persistence.appStorage.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "re-rotas.appStoragePvcName" . }}
+  labels:
+    {{- include "re-rotas.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.appStorage.size }}
+  {{- with .Values.persistence.appStorage.storageClass }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,19 @@
+1. Ensure app image is available to local cluster.
+   - kind: `kind load docker-image {{ .Values.image.repository }}:{{ .Values.image.tag }}`
+   - minikube: `minikube image load {{ .Values.image.repository }}:{{ .Values.image.tag }}`
+
+2. Install chart:
+   `helm upgrade --install {{ .Release.Name }} ./helm`
+
+3. Port-forward service:
+   `kubectl port-forward svc/{{ include "re-rotas.fullname" . }} 3000:{{ .Values.service.port }}`
+
+4. Open app:
+   http://127.0.0.1:3000
+
+Defaults:
+- Rails runs in production mode
+- auth disabled for local use (`DISABLE_AUTH=1`)
+- Postgres runs as sidecar unless `postgres.enabled=false`
+- Postgres data is ephemeral unless `postgres.persistence.enabled=true`
+- app storage is ephemeral unless `persistence.appStorage.enabled=true`

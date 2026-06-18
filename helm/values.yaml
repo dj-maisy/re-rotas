@@ -1,0 +1,78 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/dj-maisy/re-rotas
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+app:
+  disableAuth: true
+  secretKeyBase: change-me-secret-key-base
+  calendarUrlSalt: change-me-calendar-url-salt
+  googleAuthClientId: ""
+  googleAuthClientSecret: ""
+  pagerDutyApiKey: ""
+  railsMaxThreads: 3
+  railsLogLevel: info
+  extraEnv: []
+  resources: {}
+
+postgres:
+  enabled: true
+  image:
+    repository: postgres
+    tag: 17-alpine
+    pullPolicy: IfNotPresent
+  auth:
+    username: rotas
+    password: rotas
+    database: rotas
+  persistence:
+    enabled: false
+    storageClass: ""
+    size: 1Gi
+  resources: {}
+
+externalDatabase:
+  host: ""
+  port: 5432
+  username: ""
+  password: ""
+  database: ""
+
+persistence:
+  appStorage:
+    enabled: false
+    storageClass: ""
+    size: 1Gi
+
+probes:
+  startup:
+    periodSeconds: 5
+    failureThreshold: 30
+  readiness:
+    periodSeconds: 10
+    failureThreshold: 6
+  liveness:
+    periodSeconds: 20
+    failureThreshold: 3
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
